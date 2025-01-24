@@ -1,0 +1,50 @@
+# Version format ex. "0.0.1"
+version: "1.0.0"                           # Flow specification version
+
+# Basic metadata for the agent
+metadata:
+  name: "fashion-flow"                     # Unique identifier
+  description: "Recommends fashion ideas based on season and trends"
+  author: "abhishek"                  # Your account username
+  tags: [fashion, wardrobe, recommendations]  # Keywords for categorization
+  private: false                           # Access control setting
+
+# Define the input variables required
+inputs:
+  wardrobe_items:                          # Input: List of items in the user's wardrobe
+    type: string                           # String input
+    description: "List of clothing items in the wardrobe (comma-separated)"
+    required: true
+    example: "T-shirt, jeans, jacket, scarf"
+  season:                                  # Input: Current season
+    type: string
+    description: "The current season for fashion suggestions"
+    required: true
+    example: "winter"
+  style_preference:                        # Input: Trendy or casual preferences
+    type: string
+    description: "User's style preference for recommendations"
+    required: false
+    example: "trendy"
+
+# LLM configuration
+model:
+  # provider: "openai"                       # e.g., anthropic, openai, meta, etc.
+  # name: "gpt-4"                            # Specific model identifier
+  provider: "anthropic"
+  name: "claude-3.5-sonnet"
+
+# Dataset configuration (Optional)
+# dataset:
+#   source: "author_name/fashion_dataset"    # Add a curated dataset with trendy fashion styles (Optional)
+
+# Prompt template configuration
+prompt: |
+  You are a fashion assistant. Based on the user's wardrobe items ({wardrobe_items}), season ({season}),
+  and style preference ({style_preference}), suggest outfit combinations and accessories.
+
+# ReadME configuration
+readme: |
+  ## FashionFlow
+  FashionFlow recommends outfit ideas based on the season, trendy styles, and your wardrobe.
+  Input your wardrobe items, current season, and style preference to get curated fashion suggestions.
